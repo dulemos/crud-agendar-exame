@@ -1,0 +1,43 @@
+﻿@model AgendaConsultas.Models.Exame 
+
+@{
+    ViewData["Title"] = "AgendarExame";
+    var paciente = ViewData["PacienteId"];
+    var listDatas = ViewData["listDatasDisponiveis"] as IList<AgendaConsultas.Models.DataDisponivel>;
+}
+
+<h1>AgendarExame</h1>
+
+<h4>Exame</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AgendarExame">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PacienteId" class="control-label"></label>
+                <input asp-for="PacienteId" class="form-control" readonly/>
+                <span asp-validation-for="PacienteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataId" class="control-label"></label>
+                <select asp-for="DataId" class="form-control">
+                    @foreach(var item in (List<AgendaConsultas.Models.DataDisponivel>)ViewData["listDatasDisponiveis"])
+                    {
+                        <option value="@item.Id">
+                            @item.Data
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-pacienteId="@ViewData["pacienteId"]">Back to List</a>
+</div>
+

@@ -1,0 +1,39 @@
+﻿@model AgendaConsultas.Models.Admin
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="container justify-content-center">
+            <h1>Login</h1>
+            <form asp-action="Login">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="email" class="control-label"></label>
+                    <input asp-for="email" class="form-control" />
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="password" class="control-label"></label>
+                    <input asp-for="password" class="form-control" type="password" />
+                    <span asp-validation-for="password" class="text-danger"></span>
+                </div>
+
+                @if (ViewData["message"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["message"]
+                    </div>
+                }
+
+                <div class="form-group">
+                    <input type="submit" value="Entrar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
